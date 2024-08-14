@@ -1,0 +1,59 @@
+void eint1_isr(void) __irq
+{^M
+
+        SSETBIT(EXTINT,0);^M
+
+        VICVectAddr=0;^M
+^M
+    delay_ms(100);^M
+
+}       ^M
+^M
+
+void eint2_isr(void) __irq^M
+
+{^M
+
+        SSETBIT(EXTINT,0);^M
+
+        VICVectAddr=0;^M
+^M
+    delay_ms(100);^M
+
+}       ^M
+^M
+
+void Enable_EINT1(void)^M
+
+{^M
+
+        CFGPIN(PINSEL0,1,FUNC4);^M
+
+        SSETBIT(VICIntEnable,14);^M
+
+        VICVectCntl0=0x20|14;^M
+
+        VICVectAddr0=(unsigned)eint0_isr;^M
+
+    SETBIT(EXTMODE,0);^M
+
+    SETBIT(EXTPOLAR,0); ^M
+
+}^M
+^M
+void Enable_EINT1(void)^M
+
+{^M
+
+        CFGPIN(PINSEL0,3,FUNC3);^M
+
+        SSETBIT(VICIntEnable,15);^M
+
+        VICVectCntl1=0x20|15;^M
+
+        VICVectAddr1=(unsigned)eint0_isr;^M
+
+    SETBIT(EXTMODE,1);^M
+
+    SETBIT(EXTPOLAR,1); ^M
+}^M

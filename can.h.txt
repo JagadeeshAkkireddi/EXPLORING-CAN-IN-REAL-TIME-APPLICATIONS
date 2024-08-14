@@ -1,0 +1,20 @@
+#include "types.h"^M
+
+struct CAN_Frame^M
+{^M
+        u32 ID;^M
+
+        struct BitField^M
+        {^M
+                u8 RTR : 1;^M
+                u8 DLC : 4;  ^M
+        }vbf; ^M
+
+    u32 Data1,Data2;//8-bytes^M
+};
+^M
+void Init_CAN1(void);^M
+
+void CAN1_Tx(struct CAN_Frame);^M
+
+void CAN1_Rx(struct CAN_Frame *);
